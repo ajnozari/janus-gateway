@@ -14,10 +14,8 @@ janus.plugin.videoroom.jcfg
 janus.transport.http.jcfg  
 janus.transport.websockets.jcfg  
 
-Those are the bare minimum that will need to be edited, a turn server might be required if your JANUS SERVER is behind a NAT firewall.
-Please note this is separate from the turn required for clients as janus will make an RTC connection with itself in order to stream the 
-media to your clients. Please be sure to also add in api, admin, and videoroom api secrets so you can lockdown access appropriately. 
-
+These files MUST be edited to enable http rest interface (janus.transport.http.jcfg), as well as other features that are needed. It is reccomended to enable the rest API along with a secret for it, so you can manage
+the server through the Restful API that is made available.
 Please note these secrets are not considered secure as they will need to be provided to any client that wishes to connect, with the exception of the admin secret which is only used to edit the server in realtime.
 
 ## Build Docker Image:
