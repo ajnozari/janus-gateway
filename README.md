@@ -68,9 +68,12 @@ server-name=<YOURURL>
 realm=<yoururl>.com
 
 user=changeme:please
+#Multiple users can be applied for different clients
 ```
 
-Your turnserver should be configured turn:<yoururl>:3478, to enable ssl you will need to add certificates.
+Your turnserver should be configured `turn:<yoururl>:3478`, to enable ssl you will need to add certificates.
+
+Finally, edit the Janus-CFG/janus.jcfg and set the turn url, username, and password you configured in the turnserver.conf. You should provide these values to your clients as well. 
 
 ## Install Nginx:
 I have installed nginx on the host, i don't feel the need to dockerize it, especially since we are using nginx to handle SSL. You can always substitute your own ssl cert at this point. However I will not cover setting up a manual certificate.
