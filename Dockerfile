@@ -290,7 +290,7 @@ RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus
     make && make install && make configs && ldconfig
 
 ADD Janus-CFG /usr/local/etc/janus
-
+#COPY turnserver.conf /usr/local/etc
 
 
 ENV NVM_VERSION v0.35.3
@@ -314,6 +314,7 @@ RUN npm -v
 
 
 
+#CMD turnserver | janus
 CMD janus
 
 # RUN apt-get -y install iperf iperf3

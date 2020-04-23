@@ -40,6 +40,38 @@ if this does not work, you can try this alternative that uses the docker bridge,
 
 `docker run -p 8088:8088 -p 8188:8188 -p 7088:7088 --name="janus" -it -t ajnozari/janus-gateway-docker >> /dev/null`
 
+## TurnServer:
+Janus Gateway requires turn in two different situations. 
+
+The first is if YOUR turn server is behind a NAT.  If it is directly publicly accessible you will not need this. However if your Janus is behind any NAT it will require turn.
+
+You don't have to enable this, but it is recommended to try if you are having issue making connections.
+
+To enable Uncomment 
+`#COPY turnserver.conf /usr/local/etc`  
+  
+  
+as well as swap these two lines
+```smartyconfig
+#CMD turnserver | janus
+CMD janus
+```
+in the Dockerfile.
+
+Additionally you will need to configure the turnserver.conf and edit the following.
+This includes  
+```smartyconfig
+external-ip=<janus.yoururl.com>
+
+server-name=<YOURURL>
+
+realm=<yoururl>.com
+
+user=changeme:please
+```
+
+Your turnserver should be configured turn:<yoururl>:3478, to enable ssl you will need to add certificates.
+
 ## Install Nginx:
 I have installed nginx on the host, i don't feel the need to dockerize it, especially since we are using nginx to handle SSL. You can always substitute your own ssl cert at this point. However I will not cover setting up a manual certificate.
 
